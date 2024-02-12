@@ -1,29 +1,15 @@
-Certainly! The equations from the image describe the process of Empirical Risk Minimization in supervised learning, especially for classification tasks:
 
-1. The estimated parameter \(\hat{\theta}\) is obtained by minimizing the empirical risk, \(L(\theta)\):
-   \[
-   \hat{\theta} = \underset{\theta}{\mathrm{argmin}} \ L(\theta)
-   \]
-
-2. The empirical risk, \(L(\theta)\), is defined as the average loss over all \(N\) samples in the dataset:
-   \[
-   L(\theta) = \frac{1}{N} \sum_{n=1}^{N} \ell(y_n, f(x_n; \theta))
-   \]
-
-   Here, \( \ell(y_n, f(x_n; \theta)) \) is a loss function that measures the discrepancy between the predicted label \( f(x_n; \theta) \) and the true label \( y_n \).
-
-3. In the context of classification, the loss function can be specifically defined as an indicator function that equals 1 when the predicted label is not equal to the true label, and 0 otherwise:
-   \[
-   L(\theta) = \frac{1}{N} \sum_{n=1}^{N} I(y_n \neq f(x_n; \theta))
-   \]
-
-4. The indicator function \(I(e)\) is formally defined as:
-   \[
-   I(e) = 
-   \begin{cases} 
-   1 & \text{if } e \text{ is true} \\
-   0 & \text{if } e \text{ is false}
-   \end{cases}
-   \]
-
-These equations collectively represent the objective of a learning algorithm in classification tasks, which is to find the parameter set \(\theta\) that minimizes the number of misclassifications on a given dataset.
+$\hat{\theta} = \underset{\theta}{\mathrm{argmin}} \ L(\theta)$  | $L(\theta) = \frac{1}{N} \sum_{n=1}^{N} \ell(y_n, f(x_n; \theta))$ | $L(\theta) = \frac{1}{N} \sum_{n=1}^{N} I(y_n \neq f(x_n; \theta))$ 
+**softmax function:** $P(y = k | \mathbf{x}; \theta) = \frac{e^{z_k}}{\sum_{j=1}^{K} e^{z_j}}$ where $z_k = f_k(\mathbf{x}; \theta)$ | **MLE** $\hat{\theta}_{\text{mle}} = \underset{\theta}{\mathrm{argmin}} \ NLL(\theta)$ | $NLL(\theta) = -\frac{1}{N} \sum_{n=1}^{N} \log p(y_n | f(x_n; \theta))$ | **Regression** $\ell_2(y, \hat{y}) = (y - \hat{y})^2$ | $MSE(\theta) = \frac{1}{N} \sum_{n=1}^{N} (y_n - f(x_n; \theta))^2$ | **For Gaussian** $\mathcal{N}(y|\mu, \sigma^2) \triangleq \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left(-\frac{1}{2\sigma^2}(y - \mu)^2\right)$ | $p(y|x; \theta) = \mathcal{N}(y|f(x; \theta), \sigma^2)$ | $NLL(\theta) = -\sum_{n=1}^{N} \log \left[ \left(\frac{1}{\sqrt{2\pi\sigma^2}}\right)^{\frac{1}{2}} \exp\left(-\frac{1}{2\sigma^2}(y_n - f(x_n; \theta))^2\right) \right]$$= \frac{N}{2\sigma^2} MSE(\theta) + \text{const}$ | **Bayes Rule**  $p(H = h | Y = y) = \frac{p(H = h)p(Y = y | H = h)}{p(Y = y)}$ |  The probability density function of a **Gaussian distribution** is given by: $\mathcal{N}(\mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right) \quad \text{for } -\infty < x < \infty$ | **Univariate Gaussian Distribution** $P(y) \equiv \Pr(Y \leq y)$ | $\Pr(a < Y \leq b) = P(b) - P(a)$ | Cdf of Gaussian is defined as: $\Phi(y; \mu, \sigma^2) \equiv \int_{-\infty}^{y} \mathcal{N}(z|\mu, \sigma^2) dz = \frac{1}{2} \left[1 + \text{erf}\left(\frac{z}{\sqrt{2}}\right)\right],$ | where $z = \frac{(y - \mu)}{\sigma}$ and the error function (erf) is defined as: $\text{erf}(u) \equiv \frac{2}{\sqrt{\pi}} \int_{0}^{u} e^{-t^2} dt$ |The Probability distribution function (pdf) of Gaussian is defined by: $\mathcal{N}(y|\mu, \sigma^2) \triangleq \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{1}{2\sigma^2} (y - \mu)^2}$ |  When the variance of Gaussian goes to zero, the distribution becomes narrower. $\lim_{\sigma \to 0} \mathcal{N}(y|\mu, \sigma^2) \rightarrow \delta(y - \mu)$ where $( \delta)$ is the Dirac delta function, defined by: $\delta(x) = 
+\begin{cases}
++\infty & \text{if } x = 0,\\
+0 & \text{if } x \neq 0,
+\end{cases}$ and $\int_{-\infty}^{\infty} \delta(x) \, dx = 1.$ | $\int_{-\infty}^{\infty} f(y) \delta(x - y) \, dy = f(x).$ | The **multivariate** covariance between two variables \(X\) and \(Y\) is defined: $\text{Cov}[X, Y] \triangleq \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = \mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]$ | **MVN** density is $\mathcal{N}(y|\mu, \Sigma) \triangleq \frac{1}{(2\pi)^{D/2}|\Sigma|^{1/2}} \exp\left(-\frac{1}{2} (y - \mu)^T\Sigma^{-1}(y - \mu)\right)$ | $\text{Cov} [y] \triangleq \mathbb{E} [(y - \mathbb{E} [y])(y - \mathbb{E} [y])^T]$ | 
+$\Sigma = \begin{pmatrix}
+\sigma_1^2 & \sigma_{12} \\
+\sigma_{21} & \sigma_2^2
+\end{pmatrix} = \begin{pmatrix}
+\sigma_1^2 & \rho\sigma_1\sigma_2 \\
+\rho\sigma_1\sigma_2 & \sigma_2^2
+\end{pmatrix}$ | where $( \rho)$ is the **correlation coefficient**, defined by $\text{corr}[Y_1, Y_2] \triangleq \frac{\text{Cov}[Y_1, Y_2]}{\sqrt{\text{V}[Y_1]\text{V}[Y_2]}} = \frac{\sigma_{12}}{\sigma_1\sigma_2}$ | **PGM** $p(y_{1:T}) =
+p(y_1)p(y_2|y_1)p(y_3|y_2)p(y_4|y_3) \cdots = p(y_1) \prod_{t=2}^{T} p(y_t|y_{t-1})$ | $p(y_{1:T}) = p(y_{1:M}) \prod_{t=M+1}^{T} p(y_t|y_{t-M:t-1})$ | **MLE** $\hat{\theta}_{\text{mle}} = \underset{\theta}{\text{argmax}} \sum_{n=1}^{N} \log p(y_n | x_n, \theta)$ | $\text{NLL}(\theta) \triangleq -\log p(\mathcal{D}|\theta) = -\sum_{n=1}^{N} \log p(y_n | x_n, \theta)$ | **Mle for ber ~** $\hat{\theta}_{\text{mle}} = \frac{N_1}{N_0 + N_1}$ | **REGUlARIZATION** $\mathcal{L}(\theta; \lambda) = -\frac{1}{N} \sum_{n=1}^{N} \log p(y_n|x_n, \theta) - \lambda \log p(\theta)$ | **DECISION THEORY** $R(a|x) \triangleq \mathbb{E}_{p(h|x)} [\ell(h, a)] = \sum_{h \in \mathcal{H}} \ell(h, a) p(h|x)$ **|** $a^*(x) = \arg \min_{a \in A} \mathbb{E}_{p(h|x)} [\ell(h, a)]$ | $\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN}$ | $\text{Precision} = \text{PPV} = \frac{TP}{TP + FP}$ | $\text{Recall} =  \text{TPR} = \frac{TP}{TP + FN}$ | $\text{FPR} = \frac{FP}{FP + TN}$
